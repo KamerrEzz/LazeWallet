@@ -11,7 +11,7 @@ import {
 import { IncomeService } from './income.service';
 import { Incomes, Prisma } from '@prisma/client';
 
-@Controller('income')
+@Controller('incomes')
 export class IncomeController {
   constructor(private readonly incomeService: IncomeService) {}
 
@@ -35,6 +35,9 @@ export class IncomeController {
     if (start) find.date.gte = new Date(start);
     if (end) find.date.lte = new Date(end);
     if (user) find.userId = user;
+    if (!take) take = 100 as any;
+    if (!skip) skip = 0 as any;
+    if (!user) return [];
 
     return this.incomeService.findAll({
       skip: +skip,
