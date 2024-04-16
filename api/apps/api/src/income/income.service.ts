@@ -1,26 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { CreateIncomeDto } from './dto/create-income.dto';
 import { UpdateIncomeDto } from './dto/update-income.dto';
+import { PrismaService } from '../prisma.service';
+import { Incomes, Prisma } from '@prisma/client';
 
 @Injectable()
 export class IncomeService {
-  create(createIncomeDto: CreateIncomeDto) {
-    return 'This action adds a new income';
+  constructor(private prisma: PrismaService) {}
+
+  create(data: Prisma.IncomesCreateInput): Promise<Incomes> {
+    return this.prisma.incomes.create({
+      data,
+    });
   }
 
-  findAll() {
-    return `This action returns all income`;
+  findAll(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.IncomesWhereUniqueInput;
+    where?: Prisma.IncomesWhereInput;
+    orderBy?: Prisma.IncomesOrderByWithRelationInput;
+  }): Promise<Incomes[]> {
+    const { skip, take, cursor, where, orderBy } = params;
+    return this.prisma.incomes.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+      orderBy,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} income`;
+  findOne(id: Prisma.IncomesWhereUniqueInput): Promise<Incomes | null> {
+    return this.prisma.incomes.findFirst({
+      where: id,
+    });
   }
 
-  update(id: number, updateIncomeDto: UpdateIncomeDto) {
-    return `This action updates a #${id} income`;
+  update(params: {
+    where: Prisma.IncomesWhereUniqueInput;
+    data: Prisma.IncomesUpdateInput;
+  }) {
+    const { where, data } = params;
+    return this.prisma.incomes.update({
+      data,
+      where,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} income`;
+  remove(where: Prisma.IncomesWhereUniqueInput): Promise<Incomes> {
+    return this.prisma.incomes.delete({
+      where,
+    });
   }
 }

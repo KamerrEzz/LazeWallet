@@ -6,10 +6,9 @@ import { GoalsModule } from './goals/goals.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CategoriesModule } from './categories/categories.module';
-import { AccountServicesModule } from './account-services/account-services.module';
 
 @Module({
-  imports: [IncomeModule, ExpensesModule, BudgetModule, GoalsModule, UsersModule, AuthModule, CategoriesModule, AccountServicesModule],
+  imports: [IncomeModule, ExpensesModule, BudgetModule, GoalsModule, UsersModule, AuthModule, CategoriesModule],
   controllers: [],
   providers: [],
 })
