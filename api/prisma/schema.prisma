@@ -12,3 +12,86 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id         String       @id @default(uuid())
+  username   String       @unique
+  email      String       @unique
+  password   String
+  Incomes    Incomes[]
+  Expeses    Expenses[]
+  Categories Categories[]
+  Wallets    Wallets[]
+  Budgets    Budgets[]
+  Goals      Goals[]
+
+  @@index([username, email])
+}
+
+model Incomes {
+  id          String   @id @default(uuid())
+  amount      Float
+  description String?
+  date        DateTime @default(now())
+
+  user       Users       @relation(fields: [userId], references: [id])
+  userId     String
+  category   Categories? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Expenses {
+  id          String   @id @default(uuid())
+  amount      Float
+  description String
+  date        DateTime @default(now())
+
+  user       Users       @relation(fields: [userId], references: [id])
+  userId     String
+  goal       Goals?      @relation(fields: [goalID], references: [id])
+  goalID     String?
+  category   Categories? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Wallets {
+  id     String   @id @default(uuid())
+  user   Users    @relation(fields: [userId], references: [id])
+  userId String
+  name   String
+  amount Float
+  date   DateTime
+}
+
+model Categories {
+  id       String     @id @default(uuid())
+  user     Users      @relation(fields: [userId], references: [id])
+  userId   String
+  Budgets  Budgets[]
+  Expenses Expenses[]
+  Incomes  Incomes[]
+}
+
+model Budgets {
+  id         String      @id @default(uuid())
+  amount     Float
+  mount      Int
+  year       Int
+  isGeneral  Boolean
+  user       Users       @relation(fields: [userId], references: [id])
+  userId     String
+  category   Categories? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Goals {
+  id          String     @id @default(uuid())
+  user        Users      @relation(fields: [userId], references: [id])
+  userId      String
+  amount      Float
+  savedAmount Float
+  year        Int
+  month       Int
+  isAnnual    Boolean
+  Expenses    Expenses[]
+}
