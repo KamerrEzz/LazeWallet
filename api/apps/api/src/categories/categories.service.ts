@@ -26,6 +26,24 @@ export class CategoriesService {
       cursor,
       where,
       orderBy,
+      include: {
+        Expenses: {
+          select: {
+            id: true,
+            description: true,
+            amount: true,
+            date: true
+          },
+        },
+        Incomes: {
+          select: {
+            id: true,
+            description: true,
+            amount: true,
+            date: true
+          },
+        },
+      },
     });
   }
 

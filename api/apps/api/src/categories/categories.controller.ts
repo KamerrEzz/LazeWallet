@@ -16,7 +16,7 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  create(@Body() createCategoryDto: Prisma.IncomesCreateInput) {
+  create(@Body() createCategoryDto: Prisma.CategoriesCreateInput) {
     return this.categoriesService.create(createCategoryDto);
   }
 

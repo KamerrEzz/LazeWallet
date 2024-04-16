@@ -1,26 +1,54 @@
 import { Injectable } from '@nestjs/common';
-import { CreateGoalDto } from './dto/create-goal.dto';
-import { UpdateGoalDto } from './dto/update-goal.dto';
+import { Goals, Prisma } from '@prisma/client';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class GoalsService {
-  create(createGoalDto: CreateGoalDto) {
-    return 'This action adds a new goal';
+  constructor(private prisma: PrismaService) {}
+
+  create(data: Prisma.GoalsCreateInput): Promise<Goals> {
+    return this.prisma.goals.create({
+      data,
+    });
   }
 
-  findAll() {
-    return `This action returns all goals`;
+  findAll(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.GoalsWhereUniqueInput;
+    where?: Prisma.GoalsWhereInput;
+    orderBy?: Prisma.GoalsOrderByWithRelationInput;
+  }): Promise<Goals[]> {
+    const { skip, take, cursor, where, orderBy } = params;
+    return this.prisma.goals.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+      orderBy,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} goal`;
+  findOne(id: Prisma.GoalsWhereUniqueInput): Promise<Goals | null> {
+    return this.prisma.goals.findFirst({
+      where: id,
+    });
   }
 
-  update(id: number, updateGoalDto: UpdateGoalDto) {
-    return `This action updates a #${id} goal`;
+  update(params: {
+    where: Prisma.GoalsWhereUniqueInput;
+    data: Prisma.GoalsUpdateInput;
+  }) {
+    const { where, data } = params;
+    return this.prisma.goals.update({
+      data,
+      where,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} goal`;
+  remove(where: Prisma.GoalsWhereUniqueInput): Promise<Goals> {
+    return this.prisma.goals.delete({
+      where,
+    });
   }
 }
