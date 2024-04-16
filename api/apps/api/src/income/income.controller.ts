@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { IncomeService } from './income.service';
-import { Incomes, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 @Controller('incomes')
 export class IncomeController {
