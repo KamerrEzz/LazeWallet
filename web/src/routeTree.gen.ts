@@ -16,6 +16,7 @@ import { Route as DashboardTransactionsImport } from './routes/dashboard/transac
 import { Route as DashboardHomeImport } from './routes/dashboard/home'
 import { Route as DashboardGoalsImport } from './routes/dashboard/goals'
 import { Route as DashboardCategoriesImport } from './routes/dashboard/categories'
+import { Route as AboutTosImport } from './routes/about/tos'
 
 // Create/Update Routes
 
@@ -44,12 +45,21 @@ const DashboardCategoriesRoute = DashboardCategoriesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AboutTosRoute = AboutTosImport.update({
+  path: '/about/tos',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/about/tos': {
+      preLoaderRoute: typeof AboutTosImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/categories': {
@@ -75,6 +85,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  AboutTosRoute,
   DashboardCategoriesRoute,
   DashboardGoalsRoute,
   DashboardHomeRoute,
