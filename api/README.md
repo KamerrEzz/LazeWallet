@@ -1,6 +1,6 @@
 
 CRUD: 
-- [ ] auth
+- [x] auth
 - [x] budget
 - [x] categories
 - [x] expenses
@@ -9,5 +9,5 @@ CRUD:
 - [ ] users
 
 TODO
-- [ ] Auth - sistema de login
+- [x] Auth - sistema de login
 - [ ] reddis - colocar el sistema de cache
