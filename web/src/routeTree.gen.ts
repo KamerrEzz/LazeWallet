@@ -12,11 +12,35 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as DashboardTransactionsImport } from './routes/dashboard/transactions'
+import { Route as DashboardHomeImport } from './routes/dashboard/home'
+import { Route as DashboardGoalsImport } from './routes/dashboard/goals'
+import { Route as DashboardCategoriesImport } from './routes/dashboard/categories'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardTransactionsRoute = DashboardTransactionsImport.update({
+  path: '/dashboard/transactions',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardHomeRoute = DashboardHomeImport.update({
+  path: '/dashboard/home',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardGoalsRoute = DashboardGoalsImport.update({
+  path: '/dashboard/goals',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardCategoriesRoute = DashboardCategoriesImport.update({
+  path: '/dashboard/categories',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -28,11 +52,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/categories': {
+      preLoaderRoute: typeof DashboardCategoriesImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/goals': {
+      preLoaderRoute: typeof DashboardGoalsImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/home': {
+      preLoaderRoute: typeof DashboardHomeImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/transactions': {
+      preLoaderRoute: typeof DashboardTransactionsImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  DashboardCategoriesRoute,
+  DashboardGoalsRoute,
+  DashboardHomeRoute,
+  DashboardTransactionsRoute,
+])
 
 /* prettier-ignore-end */

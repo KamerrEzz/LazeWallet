@@ -18,6 +18,9 @@ export default {
           950: "#38274e",
         },
       },
+      fontFamily: {
+        'quicksand': ["Quicksand", "sans-serif"]
+      }
     },
   },
   plugins: [],
