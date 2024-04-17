@@ -19,4 +19,29 @@ export class UsersService {
     })
   }
 
+  getTransactions(where: Prisma.UsersWhereUniqueInput) {
+    return this.prisma.users.findFirst({
+      where,
+      select: {
+        Expeses: {
+          include: {
+            category: {
+              select: {
+                name: true
+              }
+            },
+          }
+        },
+        Incomes: {
+          include: {
+            category: {
+              select: {
+                name: true
+              }
+            }
+          }
+        }
+      }
+    })
+  }
 }

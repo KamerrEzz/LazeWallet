@@ -1,0 +1,39 @@
+{
+    "Expeses": [
+      {
+        "id": "4695a0ec-5da3-4fd7-a525-d72ff779e208",
+        "amount": 89,
+        "description": "casa",
+        "date": "2024-04-16T09:03:51.108Z",
+        "userId": "88e54f68-2c87-4d8b-bd7c-1028e9b32428",
+        "goalID": null,
+        "categoryId": "de301a7d-e693-4568-a702-ade99485b3f0",
+        "category": {
+          "name": "casa"
+        }
+      },
+      {
+        "id": "97013810-a129-4c3e-a9ee-cb2eb4b93eac",
+        "amount": 24,
+        "description": "35",
+        "date": "2024-04-17T08:21:27.663Z",
+        "userId": "88e54f68-2c87-4d8b-bd7c-1028e9b32428",
+        "goalID": "eb0e5e04-ceff-4057-8a21-c1940c0b481e",
+        "categoryId": null,
+        "category": null
+      }
+    ],
+    "Incomes": [
+      {
+        "id": "8c2f39c2-c5f7-4da4-b816-f8470803efc4",
+        "amount": 24,
+        "description": "asd",
+        "date": "2024-04-16T09:04:21.103Z",
+        "userId": "88e54f68-2c87-4d8b-bd7c-1028e9b32428",
+        "categoryId": "de301a7d-e693-4568-a702-ade99485b3f0",
+        "category": {
+          "name": "casa"
+        }
+      }
+    ]
+  }
