@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { ExpensesService } from './expenses.service';
 import { Prisma } from '@prisma/client';
 
@@ -21,19 +30,27 @@ export class ExpensesController {
     @Query('category') category?: string,
     @Query('user') user?: string,
   ) {
+    console.log(start, end);
+
     let find: any = {};
     if (category) find.categoryId = category;
-    if (start) find.date.gte = new Date(start);
-    if (end) find.date.lte = new Date(end);
+    if (!find.date) find.date = {};
+    if (start) find.date.gte = start;
+    if (end) find.date.lte = end;
     if (user) find.userId = user;
     if (!take) take = 100 as any;
     if (!skip) skip = 0 as any;
     if (!user) return [];
 
+    console.log({ find });
+
     return this.expensesService.findAll({
       skip: +skip,
       take: +take,
       where: find,
+      orderBy: {
+        date: 'desc',
+      },
     });
   }
 

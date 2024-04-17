@@ -32,8 +32,9 @@ export class IncomeController {
   ) {
     let find: any = {};
     if (category) find.categoryId = category;
-    if (start) find.date.gte = new Date(start);
-    if (end) find.date.lte = new Date(end);
+    if(!find.date) find.date = {}
+    if (start) find.date.gte = start;
+    if (end) find.date.lte = end;
     if (user) find.userId = user;
     if (!take) take = 100 as any;
     if (!skip) skip = 0 as any;
@@ -43,6 +44,9 @@ export class IncomeController {
       skip: +skip,
       take: +take,
       where: find,
+      orderBy: {
+        date: 'desc',
+      },
     });
   }
 
