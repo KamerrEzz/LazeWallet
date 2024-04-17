@@ -2,10 +2,10 @@
 CRUD: 
 - [] auth
 - [x] budget
-- [+] categories
-- [+] expenses
+- [x] categories
+- [x] expenses
 - [x] goals
-- [+] income
+- [x] income
 - [] users
 
 TODO
