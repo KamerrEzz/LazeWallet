@@ -56,6 +56,10 @@ export const Route = createFileRoute("/dashboard/transactions")({
               Agregar
             </button>
           </section>
+          <section>
+            <h1>Gastos</h1>
+            <hr />
+          </section>
           <section className="bg-wisteria-200/30 rounded-md overflow-hidden">
             <div className="grid grid-cols-4 bg-wisteria-900 p-1 font-thin text-white/50 text-sm">
               <p className="flex-1 text-center">Nombre</p>
@@ -68,12 +72,16 @@ export const Route = createFileRoute("/dashboard/transactions")({
                 <Col
                   key={i}
                   name={r.description}
-                  amount={r.amount}
+                  amount={r.name}
                   category={r.category?.name ?? "n/a"}
                   date={r.date.split("T")[0]}
                 />
               ))}
             </div>
+          </section>
+          <section>
+            <h1>Ingresos</h1>
+            <hr />
           </section>
           <section className="bg-wisteria-200/30 rounded-md overflow-hidden">
             <div className="grid grid-cols-4 bg-wisteria-900 p-1 font-thin text-white/50 text-sm">
@@ -86,7 +94,7 @@ export const Route = createFileRoute("/dashboard/transactions")({
               {transaction.Incomes.map((r, i) => (
                 <Col
                   key={i}
-                  name={r.description}
+                  name={r.name}
                   amount={r.amount}
                   category={r.category?.name ?? "n/a"}
                   date={r.date.split("T")[0]}
