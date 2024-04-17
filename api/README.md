@@ -1,9 +1,12 @@
 
-TODO: 
+CRUD: 
 - [] auth
-- [] budget
+- [x] budget
 - [+] categories
 - [+] expenses
-- [] goals
+- [x] goals
 - [+] income
 - [] users
+
+TODO
+- [] Auth - sistema de login
