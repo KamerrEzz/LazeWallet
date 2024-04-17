@@ -26,12 +26,26 @@ export class IncomeService {
       cursor,
       where,
       orderBy,
+      include: {
+        category: {
+          select: {
+            name: true
+          }
+        }
+      }
     });
   }
 
   findOne(id: Prisma.IncomesWhereUniqueInput): Promise<Incomes | null> {
     return this.prisma.incomes.findFirst({
       where: id,
+      include: {
+        category: {
+          select: {
+            name: true
+          }
+        }
+      }
     });
   }
 

@@ -1,0 +1,14 @@
+[
+    {
+      "id": "4695a0ec-5da3-4fd7-a525-d72ff779e208",
+      "amount": 89,
+      "description": "casa",
+      "date": "2024-04-16T09:03:51.108Z",
+      "userId": "88e54f68-2c87-4d8b-bd7c-1028e9b32428",
+      "goalID": null,
+      "categoryId": "de301a7d-e693-4568-a702-ade99485b3f0",
+      "category": {
+        "name": "casa"
+      }
+    }
+  ]

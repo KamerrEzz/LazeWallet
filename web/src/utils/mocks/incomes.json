@@ -1,0 +1,13 @@
+[
+    {
+      "id": "8c2f39c2-c5f7-4da4-b816-f8470803efc4",
+      "amount": 24,
+      "description": "asd",
+      "date": "2024-04-16T09:04:21.103Z",
+      "userId": "88e54f68-2c87-4d8b-bd7c-1028e9b32428",
+      "categoryId": "de301a7d-e693-4568-a702-ade99485b3f0",
+      "category": {
+        "name": "casa"
+      }
+    }
+  ]

@@ -27,12 +27,36 @@ export class ExpensesService {
       cursor,
       where,
       orderBy,
+      include: {
+        category: {
+          select: {
+            name: true
+          }
+        },
+        goal: {
+          select: {
+            id: true,
+          }
+        }
+      }
     });
   }
 
   findOne(id: Prisma.ExpensesWhereUniqueInput): Promise<Expenses | null> {
     return this.prisma.expenses.findFirst({
       where: id,
+      include: {
+        category: {
+          select: {
+            name: true
+          }
+        },
+        goal: {
+          select: {
+            id: true,
+          }
+        }
+      }
     });
   }
 
